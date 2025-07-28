@@ -8,7 +8,7 @@ $(document).ready(function() {
     // Fungsi untuk memperbarui waktu aktivitas di server
     function updateActivity() {
         $.ajax({
-            url: '/kyb-henkaten-board/proses/session/update_activity.php',
+            url: 'proses/session/update_activity.php',
             type: 'POST',
             cache: false,
             success: function(response) {
@@ -37,7 +37,7 @@ $(document).ready(function() {
                 showConfirmButton: false,
                 timer: 2000
             }).then(() => {
-                window.location.href = '/kyb-henkaten-board/login.php';
+                window.location.href = 'login.php';
             });
             return;
         }
@@ -68,7 +68,7 @@ $(document).ready(function() {
                         showConfirmButton: false,
                         timer: 2000
                     }).then(() => {
-                        window.location.href = '/kyb-henkaten-board/login.php';
+                        window.location.href = 'login.php';
                     });
                 }
             }, 1000);
