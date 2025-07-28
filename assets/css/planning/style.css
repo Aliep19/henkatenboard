@@ -1,0 +1,449 @@
+
+        .header-section {
+            background-color: #212529;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: bold;
+            border: 1px solid #000;
+        }
+        .header-section select, .header-section input {
+            width: 100%;
+            padding: 5px;
+            margin-top: 5px;
+            font-size: 14px;
+        }
+        .table th, .table td {
+            vertical-align: middle;
+            text-align: center;
+            padding: 8px;
+        }
+        .btn-action {
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-left: 10px;
+        }
+        .mp-repair-entry {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .mp-repair-entry select {
+            flex-grow: 1;
+            margin-right: 10px;
+        }
+        .btn-remove {
+            color: white;
+            background-color: #dc3545;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        .btn-add {
+            color: white;
+            background-color: #28a745;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        /* Styling untuk modal notifikasi */
+        #successModal .modal-content {
+            border-radius: 10px;
+            text-align: center;
+        }
+        #successModal .modal-header {
+            background-color: #28a745;
+            color: white;
+            border-bottom: none;
+        }
+        #successModal .modal-body {
+            padding: 20px;
+            font-size: 16px;
+        }
+        #successModal .btn-close {
+            filter: invert(1);
+        }
+        #successModal .btn-primary {
+            background-color: #28a745;
+            border: none;
+            padding: 10px 20px;
+        }
+        /* Styling untuk modal History DHK */
+        #historyDhkModal .modal-content {
+            border-radius: 10px;
+        }
+        #historyDhkModal .modal-header {
+            background-color: #007bff;
+            color: white;
+            border-bottom: none;
+        }
+        #historyDhkModal .modal-body {
+            padding: 20px;
+        }
+        #historyDhkModal .table {
+            font-size: 14px;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+        #historyDhkModal .table th {
+            background-color: #343a40;
+            color: white;
+            padding: 12px;
+            font-weight: 600;
+        }
+        #historyDhkModal .table td {
+            padding: 12px;
+            vertical-align: middle;
+            border-bottom: 1px solid #dee2e6;
+        }
+        #historyDhkModal .btn-detail {
+            background-color: #007bff;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 5px;
+            font-size: 13px;
+        }
+        #historyDhkModal .btn-detail:hover {
+            background-color: #0056b3;
+        }
+        /* Styling untuk modal Detail DHK */
+        #detailDhkModal .modal-content {
+            border-radius: 10px;
+        }
+        #detailDhkModal .modal-header {
+            background-color: #007bff;
+            color: white;
+            border-bottom: none;
+        }
+        #detailDhkModal .modal-body {
+            padding: 20px;
+        }
+        #detailDhkModal .process-manpower-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        #detailDhkModal .process-manpower-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #e9ecef;
+            font-size: 14px;
+        }
+        #detailDhkModal .process-manpower-list li:last-child {
+            border-bottom: none;
+        }
+        #detailDhkModal .process-manpower-list li span.process {
+            font-weight: bold;
+            color: #212529;
+        }
+        #detailDhkModal .process-manpower-list li span.manpower {
+            color: #495057;
+        }
+                
+            .container-custom {
+                max-width: 1400px;
+                margin: 0 auto;
+            }
+            
+            .card-header-custom {
+                background-color: #0c3b69;
+                color: white;
+                padding: 15px;
+                border-radius: 8px 8px 0 0;
+                font-weight: 600;
+                font-size: 1.2rem;
+            }
+            
+            .card-custom {
+                border-radius: 8px;
+                box-shadow: 0 4px 6px rgba(87, 84, 84, 0.75);
+                background-color: white;
+                margin-bottom: 2rem;
+            }
+            
+            .card-body-custom {
+                padding: 20px;
+            }
+            
+            .btn-action-bar {
+                background-color: #f8f9fa;
+                padding: 12px 20px;
+                border-radius: 0 0 8px 8px;
+                border-top: 1px solid #e9ecef;
+            }
+            
+            .btn-custom {
+                padding: 8px 16px;
+                border-radius: 30px;
+                font-weight: 500;
+                transition: all 0.3s;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+            }
+            
+            .btn-custom:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+            
+            .btn-back {
+                background-color: #dc3545;
+                color: white;
+            }
+            
+            .btn-back:hover {
+                background-color: #c82333;
+                color: white;
+            }
+            
+            .btn-history {
+                background-color: #007bff;
+                color: white;
+            }
+            
+            .btn-history:hover {
+                background-color: #0069d9;
+                color: white;
+            }
+            
+            .btn-repair {
+                background-color: #ffc107;
+                color: #212529;
+            }
+            
+            .btn-repair:hover {
+                background-color: #e0a800;
+            }
+            
+            .btn-excel {
+                background-color: #28a745;
+                color: white;
+            }
+            
+            .btn-excel:hover {
+                background-color: #218838;
+                color: white;
+            }
+            
+            .btn-submit {
+                background-color: #28a745;
+                color: white;
+                padding: 10px 24px;
+            }
+            
+            .btn-submit:hover {
+                background-color: #218838;
+            }
+            
+            .btn-reset {
+                background-color: #dc3545;
+                color: white;
+                padding: 10px 24px;
+                margin-right: 10px;
+            }
+            
+            .btn-reset:hover {
+                background-color: #c82333;
+            }
+            
+            .header-section {
+                margin-bottom: 15px;
+            }
+            
+            .form-label {
+                font-weight: 500;
+                margin-bottom: 5px;
+                color: rgb(255, 255, 255);
+            }
+            
+            .form-select, .form-control {
+                border-radius: 6px;
+                border: 1px solid #ced4da;
+                padding: 8px 12px;
+            }
+            
+            .table-custom {
+                border-radius: 8px;
+                overflow: hidden;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            }
+            
+            .table-custom thead th {
+                background-color: #0c3b69;
+                color: white;
+                font-weight: 500;
+                border: none;
+            }
+            
+            .page-title {
+                color: rgb(255, 255, 255);
+                font-weight: 700;
+                margin-bottom: 20px;
+                position: relative;
+                display: inline-block;
+            }
+            
+            .page-title:after {
+                content: '';
+                position: absolute;
+                bottom: -5px;
+                left: 0;
+                width: 100%;
+                height: 3px;
+                background-color: #ffc107;
+            }
+            
+            footer {
+                background-color: #0c3b69; 
+                color: white;
+                padding: 15px 0;
+                font-weight: 500;
+                margin-top: 40px;
+                border-radius: 8px 8px 8px 8px;
+            }
+            
+            /* Toggle Switch Styling - Smaller & Sleeker */
+            .toggle-switch {
+                position: relative;
+                display: inline-block;
+                width: 38px;
+                height: 20px;
+                vertical-align: middle;
+            }
+
+            .toggle-switch input {
+                opacity: 0;
+                width: 0;
+                height: 0;
+            }
+
+            .slider {
+                position: absolute;
+                cursor: pointer;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: #ccc;
+                transition: .3s;
+                border-radius: 20px;
+            }
+
+            .slider:before {
+                position: absolute;
+                content: "";
+                height: 14px;
+                width: 14px;
+                left: 3px;
+                bottom: 3px;
+                background-color: white;
+                transition: .3s;
+                border-radius: 50%;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            }
+
+            input:checked + .slider {
+                background-color: #28a745;
+            }
+
+            input:checked + .slider:before {
+                transform: translateX(18px);
+            }
+
+            .toggle-label {
+                margin-left: 8px;
+                font-weight: 500;
+                color: white;
+                font-size: 0.95rem;
+            }
+            
+            /* Responsive adjustments */
+            @media (max-width: 768px) {
+                .btn-custom {
+                    padding: 6px 12px;
+                    font-size: 0.875rem;
+                }
+                
+                .page-title {
+                    font-size: 1.5rem;
+                }
+                
+                .toggle-switch {
+                    width: 50px;
+                    height: 28px;
+                }
+                
+                .slider:before {
+                    height: 20px;
+                    width: 20px;
+                    left: 4px;
+                    bottom: 4px;
+                }
+                
+                input:checked + .slider:before {
+                    transform: translateX(22px);
+                }
+            }
+            
+    /* CSS untuk tab MP Repair */
+#mpRepairTabs .nav-link {
+    color: #495057;
+    font-weight: 500;
+}
+
+#mpRepairTabs .nav-link.active {
+    color: #0d6efd;
+    background-color: #f8f9fa;
+    border-color: #dee2e6 #dee2e6 #f8f9fa;
+}
+
+/* Style untuk tabel MP Repair */
+#savedMpRepairTable tr {
+    cursor: pointer;
+}
+
+#savedMpRepairTable tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Style untuk legenda warna */
+.color-legend {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.color-legend .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.color-legend .color-box {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #dee2e6;
+}
+
+.color-legend .color-red {
+    background-color: #dc3545;
+}
+
+.color-legend .color-white {
+    background-color: #ffffff;
+}
+
+.color-legend .color-yellow {
+    background-color: #ffc107;
+}
+
+       
+   

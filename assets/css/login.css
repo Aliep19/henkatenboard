@@ -1,0 +1,173 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    text-align: center;
+    width: 100%;
+    padding: 20px;
+
+}
+
+header {
+    background-color: #00274d;
+    color: white;
+    padding: 20px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+
+header .logo {
+    width: 100px;
+    margin-right: 20px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.5em;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.clock {
+    font-size: 1.5em;
+}
+
+.login-box {
+    background-color: white;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+    width: 400px;
+    /* Adjusted width */
+    text-align: center;
+}
+
+.login-box img {
+    width: 150px;
+    /* Adjust width of the logo */
+    margin-bottom: 20px;
+    /* Adjust spacing below the image */
+}
+
+.textbox i {
+    font-size: 18px;
+    color: #333;
+}
+
+.textbox {
+    margin: 10px 0;
+    text-align: left;
+}
+
+.textbox label {
+    display: block;
+    font-weight: bold;
+}
+
+.textbox input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+}
+
+.textbox img {
+    display: block;
+    margin: 10px 0;
+}
+
+.btn {
+    background-color: #f7002d;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.btn:hover {
+    background-color: #921717;
+}
+
+/* styles.css */
+
+.notification {
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    color: white;
+    z-index: 1000;
+    text-align: center;
+}
+
+.notification.success {
+    background-color: #4CAF50;
+    /* Green */
+}
+
+.notification.error {
+    background-color: #f44336;
+    /* Red */
+}
+
+.modal-content {
+    border-radius: 10px;
+}
+
+.modal-header {
+    border-bottom: none;
+}
+
+.otp-field {
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    font-size: 1.5rem;
+    margin: 5px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+}
+
+.modal-footer {
+    border-top: none;
+    text-align: center;
+}
+
+.otp-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.otp-field+.otp-field {
+    margin-left: 10px;
+}
+
+.btn-disabled {
+    cursor: not-allowed;
+    opacity: 0.65;
+}
+
+#error-alert {
+    transition: opacity 0.5s ease-out;
+}

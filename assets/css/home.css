@@ -1,0 +1,162 @@
+        /* Gaya untuk tabel Historical Man Power dengan scroll
+        .historical-man-power .table-responsive {
+            max-height: 300px;
+            overflow-y: auto;
+            border-radius: 8px;
+        }
+
+        .historical-man-power .table thead {
+            position: sticky;
+            top: 0;
+            z-index: 1;
+            background-color: #f8f9fa;
+        }
+
+        .historical-man-power .table {
+            margin-bottom: 0;
+            width: 100%;
+        }
+
+        .historical-man-power .table-responsive::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .historical-man-power .table-responsive::-webkit-scrollbar-thumb {
+            background-color: #adb5bd;
+            border-radius: 4px;
+        }
+
+        .historical-man-power .table-responsive::-webkit-scrollbar-track {
+            background-color: #f1f1f1;
+        }
+    
+
+
+    .table th,
+    .table td {
+        vertical-align: middle; 
+        padding: 15px; 
+    }
+
+    .table th {
+        background-color: rgb(18, 18, 77); 
+        color: white; 
+    }
+
+    .table-hover tbody tr:hover {
+        background-color: rgba(0, 123, 255, 0.1); 
+    }
+
+    .table-striped tbody tr:nth-of-type(odd) {
+        background-color: rgba(0, 0, 0, 0.05); 
+    } */
+
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .compact-section {
+            padding: 0 10px;
+        }
+        .top-panel {
+            padding: 0 10px;
+        }
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: none;
+        }
+        .table-responsive {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .table thead th {
+            position: sticky;
+            top: 0;
+            background-color: #f8f9fa;
+            z-index: 10;
+        }
+        .avatar {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+        .bg-primary-dark {
+            background-color: rgb(18, 18, 77);
+        }
+        .text-primary-dark {
+            color: rgb(18, 18, 77);
+        }
+        .btn-gradient {
+            transition: all 0.3s ease;
+        }
+        .clickable-badge {
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .clickable-badge:hover {
+            transform: scale(1.05);
+        }
+        .process-row {
+            transition: background-color 0.3s;
+        }
+        .process-row:hover {
+            background-color: rgba(0, 0, 0, 0.03);
+        }
+        .history-table {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #495057;
+        }
+        .compact-form .form-control, .compact-form .form-select {
+            padding: 0.375rem 0.75rem;
+            font-size: 0.875rem;
+        }
+       
+                .btn-gradient-blue {
+                    background: linear-gradient(90deg, #1e3c72 0%, #2a5298 100%);
+                    color: #fff;
+                    border: none;
+                    transition: transform 0.1s, box-shadow 0.1s;
+                }
+                .btn-gradient-blue:disabled {
+                    background: #b0b8c1;
+                    color: #eaeaea;
+                    cursor: not-allowed;
+                }
+                .btn-gradient-blue:hover:not(:disabled), .btn-gradient-blue:focus:not(:disabled) {
+                    background: linear-gradient(90deg, #27408b 0%, #4169e1 100%);
+                    transform: translateY(-2px) scale(1.03);
+                    box-shadow: 0 4px 16px rgba(30,60,114,0.15);
+                }
+                .btn-gradient-green {
+                    background: linear-gradient(90deg, #11998e 0%, #38ef7d 100%);
+                    color: #fff;
+                    border: none;
+                    transition: transform 0.1s, box-shadow 0.1s;
+                }
+                .btn-gradient-green:hover, .btn-gradient-green:focus {
+                    background: linear-gradient(90deg, #0c8b7c 0%, #2ecc71 100%);
+                    transform: translateY(-2px) scale(1.03);
+                    box-shadow: 0 4px 16px rgba(17,153,142,0.15);
+                }
+                .btn-gradient-orange {
+                    background: linear-gradient(90deg, #f7971e 0%, #ffd200 100%);
+                    color: #fff;
+                    border: none;
+                    transition: transform 0.1s, box-shadow 0.1s;
+                }
+                .btn-gradient-orange:hover, .btn-gradient-orange:focus {
+                    background: linear-gradient(90deg, #f7971e 0%, #ffb347 100%);
+                    transform: translateY(-2px) scale(1.03);
+                    box-shadow: 0 4px 16px rgba(247,151,30,0.15);
+                }
+            
+   

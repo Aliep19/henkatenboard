@@ -1,0 +1,245 @@
+
+.header {
+    background-color: #001f3f;
+    color: #fff;
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 100px;
+    /* Tambahkan jarak antara header dan elemen berikutnya */
+}
+
+body {
+    padding-top: 30px;
+    /* Jarak antara header yang fixed dan konten */
+}
+
+
+.header .logo {
+    height: 50px;
+}
+
+.header .title h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    text-align: center;
+    flex-grow: 1;
+}
+
+.top-panel {
+    background-color: #e0e0e0;
+    padding: 20px;
+    margin-top: 200px;
+    /* Tambahkan jarak lebih besar dari sebelumnya */
+
+}
+
+
+.info-panel {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    margin-bottom: 200px;
+}
+
+.dashboard-buttons button {
+    margin-right: 10px;
+}
+
+/* Main Content Layout */
+.main-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+/* Image Container Styling */
+.image-container {
+    flex: 2;
+    position: relative;
+}
+
+.process-image {
+    width: 200%;
+    height: 100%;
+    max-width: 800px;
+    /* Sesuaikan dengan kebutuhan */
+    max-height: 600px;
+    /* Sesuaikan dengan kebutuhan */
+    border-radius: 10px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+/* Zoom Effect */
+.process-image.zoomable:hover {
+    transform: scale(1.2);
+    /* Zoom X dan Y */
+}
+
+/* PIC of Process Styling */
+.pic-of-process-container {
+    flex: 1;
+    background-color: #001f3f;
+    color: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin-left: 50px;
+    /* Geser lebih ke kanan dengan margin */
+}
+
+/* Alternatif menggunakan transform untuk menggeser lebih dinamis */
+.pic-of-process-container {
+    flex: 1;
+    background-color: #001f3f;
+    color: white;
+    border-radius: 10px;
+    padding: 20px;
+    transform: translateX(170px);
+    /*Geserlebihkekanan*/
+    -webkit-transform: translateX(170px);
+    -moz-transform: translateX(170px);
+    -ms-transform: translateX(170px);
+    -o-transform: translateX(170px);
+}
+
+
+/* Styling untuk container scrollable */
+.table-scroll-container {
+    max-height: 300px;
+    /* Set ukuran maksimum tinggi kontainer scroll */
+    overflow-y: auto;
+    /* Menambahkan scroll vertikal ketika data lebih banyak */
+}
+
+
+
+.table {
+    margin-top: 20px;
+    color: #fff;
+    text-align: center;
+}
+
+.table-bordered th,
+.table-bordered td {
+    border: 1px solid #ccc;
+}
+
+
+.process-table th {
+    background-color: #333;
+    color: white;
+}
+
+.line-guide div:first-child {
+    background-color: #001f3f;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+.image-container {
+    position: relative;
+    overflow: hidden;
+    /* Tambahkan jika diperlukan batasan */
+}
+
+.process-image.zoomable {
+    transition: transform 0.3s ease;
+    /* Animasi saat zoom */
+}
+
+.process-image.zoomable:hover {
+    transform: scale(1.1);
+    /* Zoom in saat mouse hover */
+}
+
+.hidden-qualification {
+    display: none;
+    /* Sembunyikan elemen */
+}
+
+
+/* Styling untuk tombol profil pengguna */
+.header .btn-profile {
+    padding: 8px 12px;
+    font-size: 1.3rem;
+    transition: all 0.3s ease;
+    border-radius: 50%;
+}
+.header .btn-profile:hover {
+    background-color: #007bff;
+    color: white;
+    transform: scale(1.1);
+}
+
+/* Styling untuk modal profil pengguna */
+#userModal .modal-content {
+    border: none;
+    border-radius: 8px;
+}
+#userModal .modal-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+}
+#userModal .modal-title {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+#userModal .profile-photo {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border: 1px solid #dee2e6;
+    margin-bottom: 10px;
+}
+
+#userModal .form-label {
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+#userModal .form-control[readonly] {
+    background-color: #e9ecef;
+    border: 1px solid #ced4da;
+}
+#userModal .btn-submit {
+    background-color: #28a745;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+#userModal .btn-submit:hover {
+    background-color: #218838;
+}
+#userModal .btn-logout {
+    background-color: #dc3545;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+#userModal .btn-logout:hover {
+    background-color: #c82333;
+}
+.header .btn-profile {
+    padding: 0; /* Hapus padding agar foto pas */
+    border: none; /* Hilangkan border default tombol */
+    transition: all 0.3s ease;
+}
+.header .profile-header-photo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid transparent;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+}
+.header .btn-profile:hover .profile-header-photo {
+    border-color: #007bff;
+    transform: scale(1.1);
+}

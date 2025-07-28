@@ -1,0 +1,33 @@
+
+
+   /* Gaya untuk tabel Historical Man Power dengan scroll */
+   .historical-man-power .table-responsive {
+       max-height: 300px;
+       overflow-y: auto;
+       border-radius: 8px;
+   }
+
+   .historical-man-power .table thead {
+       position: sticky;
+       top: 0;
+       z-index: 1;
+       background-color: #f8f9fa;
+   }
+
+   .historical-man-power .table {
+       margin-bottom: 0;
+       width: 100%;
+   }
+
+   .historical-man-power .table-responsive::-webkit-scrollbar {
+       width: 8px;
+   }
+
+   .historical-man-power .table-responsive::-webkit-scrollbar-thumb {
+       background-color: #adb5bd;
+       border-radius: 4px;
+   }
+
+   .historical-man-power .table-responsive::-webkit-scrollbar-track {
+       background-color: #f1f1f1;
+   }

@@ -1,0 +1,33 @@
+ 
+        :root {
+            --kayaba-red: #001f3f;
+            --kayaba-dark-red: #B91C3C;
+        }
+        .header-kayaba {
+            background: var(--kayaba-red);
+            color: white;
+        }
+        .btn-kayaba {
+            background: var(--kayaba-red);
+            border-color: var(--kayaba-red);
+            color: white;
+        }
+        .btn-kayaba:hover {
+            background: var(--kayaba-dark-red);
+            border-color: var(--kayaba-dark-red);
+            color: white;
+        }
+        .text-kayaba {
+            color: var(--kayaba-red);
+        }
+        .border-kayaba {
+            border-color: var(--kayaba-red) !important;
+        }
+        .bg-kayaba-light {
+            background-color: #001f3f;
+        }
+        .code-badge {
+            background: var(--kayaba-red);
+            color: white;
+        }
+  

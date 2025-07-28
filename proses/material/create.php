@@ -1,0 +1,74 @@
+<?php
+require_once '../../konfigurasi/konfig.php';
+$response = ['success' => false, 'message' => 'Unknown error'];
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $editId = $_POST['editId'] ?? '';
+    $tanggal = $_POST['tanggal'];
+    $shift = $_POST['shift'];
+    $no_material = $_POST['no_material'];
+    $nama_material = $_POST['nama_material'];
+    $kode = $_POST['kode'];
+    $alasan = $_POST['alasan'];
+    $sebelum = $_POST['sebelum'];
+    $saatini = $_POST['saatini'];
+    $gambar = '';
+
+        // Handle file upload
+    if (isset($_FILES['gambar']) && $_FILES['gambar']['error'] === UPLOAD_ERR_OK) {
+        $upload = $_FILES['gambar'];
+        $ext = pathinfo($upload['name'], PATHINFO_EXTENSION);
+        $filename = uniqid('img_') . '.' . $ext;
+        $uploadDir = '../../Uploads/';
+        $uploadPath = $uploadDir . $filename;
+
+        // Validate file size (2MB limit) and type
+        $allowedTypes = ['image/jpeg', 'image/png'];
+        $maxSize = 2 * 1024 * 1024; // 2MB
+        if ($upload['size'] > $maxSize) {
+            echo json_encode(['success' => false, 'message' => 'File size exceeds 2MB limit']);
+            exit;
+        }
+        if (!in_array($upload['type'], $allowedTypes)) {
+            echo json_encode(['success' => false, 'message' => 'Invalid file type']);
+            exit;
+        }
+
+        if (move_uploaded_file($upload['tmp_name'], $uploadPath)) {
+            $gambar = $filename;
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Failed to upload file']);
+            exit;
+        }
+    }
+
+    if ($editId) {
+        // Update existing record
+        $sql = "UPDATE material SET tanggal='$tanggal', shift='$shift', no_material='$no_material', nama_material='$nama_material', kode='$kode', alasan='$alasan', sebelum='$sebelum', saatini='$saatini'";
+        if ($gambar) {
+            $sql .= ", gambar='$gambar'";
+            // Delete old image if exists
+            $result = $conn->query("SELECT gambar FROM material WHERE id='$editId'");
+            if ($result->num_rows > 0) {
+                $oldImage = $result->fetch_assoc()['gambar'];
+                if ($oldImage && file_exists('../../uploads/' . $oldImage)) {
+                    unlink('../../uploads/' . $oldImage);
+                }
+            }
+        }
+        $sql .= " WHERE id='$editId'";
+    } else {
+        // Insert new record
+        $sql = "INSERT INTO material (tanggal, shift, no_material, nama_material, kode, alasan, sebelum, saatini, gambar) VALUES ('$tanggal', '$shift', '$no_material', '$nama_material', '$kode', '$alasan', '$sebelum', '$saatini', '$gambar')";
+    }
+
+    if ($conn->query($sql) === TRUE) {
+        $response = ['success' => true];
+    } else {
+        $response = ['success' => false, 'message' => 'Database error: ' . $conn->error];
+    }
+}
+
+$conn->close();
+echo json_encode($response);
+?>

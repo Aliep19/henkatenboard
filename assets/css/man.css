@@ -1,0 +1,77 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+
+.swal2-popup {
+    width: 600px;
+    padding: 0;
+    border-radius: 0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.swal2-header {
+    background-color: #002e43;
+    color: white;
+    font-size: 24px;
+    text-align: center;
+    padding: 10px 0;
+    margin: 0;
+}
+
+.swal2-content {
+    padding: 20px;
+    text-align: center;
+}
+
+.table-container {
+    text-align: left;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.table-container h3 {
+    background-color: #002e43;
+    color: white;
+    padding: 10px;
+    margin: 0;
+    font-size: 18px;
+}
+
+.table-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.table-container th,
+.table-container td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+.table-container td:first-child {
+    width: 50px;
+    background-color: #ccc;
+}
+
+.table-container .gray {
+    background-color: #ddd;
+}
+
+/* .back-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: red;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    font-size: 16px;
+    margin-top: 20px;
+} */

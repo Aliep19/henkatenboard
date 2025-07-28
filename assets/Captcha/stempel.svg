@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="100" xmlns="http://www.w3.org/2000/svg">
+    <!-- Icon -->
+    <svg width="50" height="50" viewBox="0 0 16 16" class="bi bi-exclamation-circle-fill icon-warning" fill="#000000" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M8 14a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm0-9a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm0 3a1 1 0 0 1 1 1v3a1 1 0 0 1-2 0V9a1 1 0 0 1 1-1z"/>
+    </svg>
+    <!-- Teks "Approved by [nama]" -->
+    <text x="70" y="30" font-family="Arial" font-size="16" fill="#000000">Approved by John Doe</text>
+</svg>
