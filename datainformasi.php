@@ -228,7 +228,7 @@
         <p><b>© 2025 PT Kayaba Indonesia. All Rights Reserved.</b></p>
     </footer>
 datainformasi
-    <script src="assets/js//script.js"></script>
+    <script src="assets/js/datainformasi/script.js"></script>
 </body>
 </html>
-<?php mysqli_close($conn3); ?>
+<?php mysqli_close($conn3); ?><?php mysqli_close($conn); ?>
