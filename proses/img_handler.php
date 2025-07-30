@@ -1,5 +1,5 @@
-
 <?php
+
 // Default image atau pesan jika belum ada line yang dipilih
 $image_path = "";
 $display_message = "<p class='text-muted mt-2'>Pilih Line untuk melihat atau mengunggah layout</p>";
@@ -21,7 +21,7 @@ if (isset($_GET['line']) && !empty($_GET['line'])) {
         $image_path = "assets/img/line_layouts/line_$line_name.png";
         $display_message = "<p class='text-muted mt-2'>Gambar layout untuk " . htmlspecialchars($row_line_name['name']) . " belum tersedia</p>";
 
-        // Cek apakah file gambar ada
+        // Cek apakah file gambar ada// perbaikan catch gambar
         if (file_exists($image_path)) {
             $display_message = "";
         }
