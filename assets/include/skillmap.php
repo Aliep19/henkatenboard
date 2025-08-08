@@ -26,8 +26,8 @@ $processes = [];
 while ($row = $result_processes->fetch_assoc()) {
     $processes[$row['id']] = [
         'name' => $row['name'],
+        'min_skill' => $row['min_skill']
     ];
-    
 }
 $stmt_processes->close();
 
@@ -61,5 +61,4 @@ while ($row = $result_manpower->fetch_assoc()) {
     }
 }
 $stmt_manpower->close();
-
 ?>

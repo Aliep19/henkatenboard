@@ -74,8 +74,8 @@ if (isset($id_hkt) && intval($id_hkt) > 0) {
                         $status = $row_proses['status']; // 1 for S Process, 0 for regular process
                         $min_skill = $row_proses['min_skill'];
 
-                        // Tentukan warna baris berdasarkan status dan keberadaan pengganti
-                        $row_color = !empty($npk_pengganti) ? ($status == 1 ? 'table-danger' : 'table-warning') : ''; // Merah untuk S Process, Kuning untuk proses biasa jika ada pengganti
+                        // Tentukan warna baris berdasarkan status proses
+                        $row_color = ($status == 1) ? 'table-danger' : 'table-light'; // Merah untuk S-Process, Putih untuk non-S-Process
 
                         // Cek kualifikasi man power (baik pengganti maupun awal) di tabel qualifications
                         $query_qualification = "SELECT value FROM qualifications WHERE npk = ? AND process_id = ?";
@@ -102,7 +102,7 @@ if (isset($id_hkt) && intval($id_hkt) > 0) {
                         $stmt_qualification->close();
                     } else {
                         $process_name = 'Unknown Process';
-                        $row_color = ''; // Default tidak ada warna
+                        $row_color = 'table-light'; // Default putih jika proses tidak ditemukan
                     }
 
                     // Tambahkan data ke array

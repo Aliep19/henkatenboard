@@ -211,23 +211,34 @@ if (isset($_GET['shift'])) {
                 </div>
                 <div class="col-lg-6">
                     <div class="card h-55">
-                        <div class="card-header bg-primary-dark text-white d-flex align-items-center" style="background:rgb(18, 18, 77);">
-                            <i class="fa fa-user-cog me-2"></i>
-                            <h5 class="card-title mb-0"><b>PIC OF PROCESS</b></h5>
+                        <div class="card-header bg-primary-dark text-white d-flex align-items-center justify-content-between" style="background:rgb(18, 18, 77);">
+                            <div class="d-flex align-items-center">
+                                <i class="fa fa-user-cog me-2"></i>
+                                <h5 class="card-title mb-0"><b>PIC OF PROCESS</b></h5>
+                            </div>
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="badge" style="background-color: red; width: 20px; height: 20px;">&nbsp;</span>
+                                <small class="text-white me-3">S-Process</small>
+                                <span class="badge border border-dark" style="background-color: white; width: 20px; height: 20px;">&nbsp;</span>
+                                <small class="text-white">Non S-Process</small>
+                            </div>
                         </div>
+
                         <div class="card-body p-0">
                             <div class="table-responsive">
-                                <table class="table table-hover mb-0">
-                                    <thead class="table-light">
-                                        <tr>
-                                            <th>NO</th>
-                                            <th>PROCESS</th>
-                                            <th>NPK</th>
-                                            <th>NAME</th>
-                                            <th>MP STATUS</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="process-body">
+                                <div class="scroll-container" style="max-height: 300px; overflow-y: auto;">
+                                    <table class="table table-hover mb-0">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th>NO</th>
+                                                <th>PROCESS</th>
+                                                <th>NPK</th>
+                                                <th>NAME</th>
+                                                <th>MP STATUS</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="process-body">
+
                                         <?php include 'proses/get_pic_process.php'; ?>
                                         <?php if (empty($pic_data)): ?>
                                             <tr>
@@ -266,6 +277,7 @@ if (isset($_GET['shift'])) {
                                         <?php endif; ?>
                                     </tbody>
                                 </table>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -475,21 +487,42 @@ if (isset($_GET['shift'])) {
         }
         </script>
         <script>
-function logCekAbsensi() {
-    fetch('cek_absensi.php')
-        .then(res => res.text())
-        .then(text => {
-            console.log('--- Log Cek Absensi ---\n' + text);
-        })
-        .catch(err => {
-            console.error('[❌] Gagal fetch cek_absensi.php:', err);
-        });
-}
+            function logCekAbsensi() {
+                fetch('cek_absensi.php')
+                    .then(res => res.text())
+                    .then(text => {
+                        console.log('--- Log Cek Absensi ---\n' + text);
+                    })
+                    .catch(err => {
+                        console.error('[❌] Gagal fetch cek_absensi.php:', err);
+                    });
+            }
 
-logCekAbsensi(); // saat load pertama
-setInterval(logCekAbsensi, 300000); // ulang tiap 5 menit
-</script>
-      
+            logCekAbsensi(); // saat load pertama
+            setInterval(logCekAbsensi, 300000); // ulang tiap 5 menit
+            </script>
+            <script>
+                const scrollContainer = document.querySelector('.scroll-container');
+                let scrollDirection = 1;
+
+                function autoScroll() {
+                    if (!scrollContainer) return;
+                    
+                    scrollContainer.scrollTop += scrollDirection;
+
+                    // Jika sampai bawah, ubah arah scroll ke atas
+                    if (scrollContainer.scrollTop + scrollContainer.clientHeight >= scrollContainer.scrollHeight) {
+                        scrollDirection = -1;
+                    }
+                    // Jika sampai atas, ubah arah scroll ke bawah
+                    if (scrollContainer.scrollTop <= 0) {
+                        scrollDirection = 1;
+                    }
+                }
+
+                setInterval(autoScroll, 50); // 50ms per scroll step (bisa kamu sesuaikan)
+            </script>
+
     </body>
 </html>
 <?php

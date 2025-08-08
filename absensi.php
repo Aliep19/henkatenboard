@@ -42,7 +42,7 @@
             <i class="fas fa-exclamation-circle fa-lg"></i>
             <div class="text-black">
                 <strong>Perhatian :</strong>
-            Harap melakukan absensi maksimal 1 1/2 jam dari awal shift sebelum absensi ditutup.
+            Harap melakukan absensi maksimal 2 jam dari awal shift sebelum absensi ditutup.
             </div>
             <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
@@ -152,7 +152,7 @@
                 <button class="btn btn-success">
                     <i class="fas fa-paper-plane"></i> Submit
                 </button>
-                <!-- <button class="btn btn-warning btn-dev-submit" style="display: none;">Dev Submit</button> -->
+                <button class="btn btn-warning btn-dev-submit" style="display: none;">Dev Submit</button>
             </div>
         </div>
     </div>

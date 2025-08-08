@@ -341,12 +341,12 @@ $('.btn.btn-success').click(function () {
 
     const diffMinutes = (now - shiftStart) / 60000;
 
-    if (diffMinutes > 90) {
+    if (diffMinutes > 120) {
         Swal.fire({
             icon: 'warning',
             iconColor: 'red',
             title: 'Absensi Ditutup!',
-            text: 'Absensi maksimal dilakukan dalam 1 1/2 jam setelah shift dimulai.',
+            text: 'Absensi maksimal dilakukan dalam 2 jam setelah shift dimulai.',
         });
         return;
     }

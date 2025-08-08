@@ -20,7 +20,6 @@ require_once 'assets/include/skillmap.php';
     <link rel="shortcut icon" href="assets/img/icon.jpg" type="image/x-icon">
     <link rel="stylesheet" href="assets/fontawesome/css/all.min.css">   
     <link rel="stylesheet" href="assets/css/skillmap/style.css?v=<?php echo time(); ?>">
-   
 </head>
 <body>
     <div class="loading-overlay" id="loadingOverlay">
@@ -52,7 +51,7 @@ require_once 'assets/include/skillmap.php';
 
             <!-- Action Bar -->
             <div class="action-bar">
-                <button class="btn btn-back" onclick="window.location.href='home.php'">
+                <button class="btn-back" onclick="window.location.href='home.php'">
                     <i class="fas fa-arrow-left me-2"></i>Kembali
                 </button>
                 <div class="search-wrapper">
@@ -67,10 +66,28 @@ require_once 'assets/include/skillmap.php';
                     <table class="skill-table table" id="skillTable">
                         <thead>
                             <tr>
-                                <th style="width: 60px;">No</th>
-                                <th style="width: 200px;">Karyawan</th>
+                                <th style="width: 60px;" rowspan="2">No</th>
+                                <th style="width: 200px;" rowspan="2"><b>( NPK )</b> <br> Karyawan</th>
                                 <?php foreach ($processes as $process_id => $process): ?>
-                                    <th style="width: 120px;"><?php echo htmlspecialchars($process['name']); ?></th>
+                                    <th class="process-name-cell">
+                                        <div class="process-name">
+                                            <?php echo htmlspecialchars($process['name']); ?>
+                                        </div>
+                                    </th>
+
+                                <?php endforeach; ?>
+                            </tr>
+                            <tr>
+                                <?php foreach ($processes as $process_id => $process): ?>
+                                    <th style="width: 120px;" class="process-skill-cell">
+                                        <?php if ($process['min_skill'] > 0): ?>
+                                            <canvas id="process_chart_<?php echo $process_id; ?>" class="process-chart" 
+                                                    data-min-skill="<?php echo $process['min_skill']; ?>"></canvas>
+                                        <?php else: ?>
+                                            <div class="skill-placeholder"></div>
+                                        <?php endif; ?>
+                                        <div class="process-skill-value"><?php echo $process['min_skill'] . '/4'; ?></div>
+                                    </th>
                                 <?php endforeach; ?>
                             </tr>
                         </thead>
@@ -87,7 +104,7 @@ require_once 'assets/include/skillmap.php';
                                     <tr>
                                         <td class="row-number"><?php echo ++$index; ?></td>
                                         <td class="employee-info">
-                                            <div class="employee-npk"><?php echo htmlspecialchars($npk); ?></div>
+                                            <div class="employee-npk">( <?php echo htmlspecialchars($npk); ?> )</div>
                                             <div class="employee-name"><?php echo htmlspecialchars($data['name']); ?></div>
                                         </td>
                                         <?php foreach ($processes as $process_id => $process): ?>
@@ -97,8 +114,12 @@ require_once 'assets/include/skillmap.php';
                                                 $max_skill = 4;
                                                 $chart_id = "chart_{$npk}_{$process_id}";
                                                 ?>
-                                                <canvas id="<?php echo $chart_id; ?>" class="skill-chart" 
-                                                        data-skill="<?php echo $skill_value; ?>"></canvas>
+                                                <?php if ($skill_value > 0): ?>
+                                                    <canvas id="<?php echo $chart_id; ?>" class="skill-chart" 
+                                                            data-skill="<?php echo $skill_value; ?>"></canvas>
+                                                <?php else: ?>
+                                                    <div class="skill-placeholder"></div>
+                                                <?php endif; ?>
                                                 <div class="skill-value"><?php echo $skill_value . '/' . $max_skill; ?></div>
                                             </td>
                                         <?php endforeach; ?>
@@ -141,6 +162,6 @@ require_once 'assets/include/skillmap.php';
 
         logCekAbsensi(); // saat load pertama
         setInterval(logCekAbsensi, 300000); // ulang tiap 5 menit
-</script>
+    </script>
 </body>
 </html>

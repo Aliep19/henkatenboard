@@ -7,7 +7,7 @@
         exit();
     }
 
-    require_once __DIR__ . './assets/phpPasswordHashingLib/passwordLib.php';
+    require_once __DIR__ . '/assets/phpPasswordHashingLib/passwordLib.php';
     require 'konfigurasi/konfig.php';
 
     // Function to mask the phone number and show only the last 4 digits

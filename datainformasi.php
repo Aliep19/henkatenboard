@@ -231,4 +231,4 @@ datainformasi
     <script src="assets/js/datainformasi/script.js"></script>
 </body>
 </html>
-<?php mysqli_close($conn3); ?><?php mysqli_close($conn); ?>
+<?php mysqli_close($conn); ?>
