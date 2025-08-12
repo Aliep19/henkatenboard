@@ -119,6 +119,12 @@ if (isset($_GET['shift'])) {
                                 </li>
                             </ul>
                         </div>
+                        <a class="fw-semibold d-flex align-items-center gap-2 px-3 py-2" 
+                           href="rule.php" style="border-radius: 12px; color: #fff; text-decoration: none;"
+                           onmouseover="this.style.transform='translateY(-3px)';this.style.transition='transform 0.2s';"
+                           onmouseout="this.style.transform='none';">
+                            RULES
+                        </a>
                     </div>
                     <div class="ms-auto"></div>
                     <form class="d-flex flex-wrap align-items-center gap-3" method="GET" action="">
@@ -290,7 +296,7 @@ if (isset($_GET['shift'])) {
                         <div class="card-header bg-primary-dark text-white" style="background:rgb(18, 18, 77);">
                             <h5 class="card-title mb-0"><i class="fa fa-circle-user me-2"></i> Foreman & Line Guide</h5>
                         </div>
-                        <div class="card-body p-3">
+                        <div class="card-body p-3 scroll-container" style="max-height: 30vh; overflow-y: auto;">
                             <h6 class="section-title text-primary mb-3">
                                 <i class="fa fa-user-tie me-2"></i> Foreman
                             </h6>
@@ -438,10 +444,16 @@ if (isset($_GET['shift'])) {
                                 <i class="fa fa-calendar me-1"></i>
                                 <h5 class="card-title mb-0 ms-1"><b>Historical Man Power</b></h5>
                             </div>
+                             <div class="d-flex align-items-center gap-2">
+                                <span class="badge" style="background-color: red; width: 20px; height: 20px;">&nbsp;</span>
+                                <small class="text-white me-3">S-Process</small>
+                                <span class="badge border border-dark" style="background-color: white; width: 20px; height: 20px;">&nbsp;</span>
+                                <small class="text-white">Non S-Process</small>
+                            </div>
                             <input type="date" id="history-date" class="form-control form-control-sm w-auto" value="<?php echo date('Y-m-d'); ?>">
                         </div>
                         <div class="card-body p-0 table-responsive">
-                            <div class="table-responsive history-table">
+                            <div class="table-responsive scroll-container" style="max-height: 30vh; overflow-y: auto;">
                                 <table class="table table-hover mb-0">
                                     <thead class="table-light">
                                         <tr>
@@ -476,53 +488,6 @@ if (isset($_GET['shift'])) {
         <script src="assets/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
         <script src="assets/jquery-ui/jquery-ui.min.js"></script>
         <script src="assets/js/script.js?v=<?php echo time(); ?>"></script>
-        
-        <script>
-        // Function to handle manual book opening
-        function openManualBook(type) {
-            if (type === 'henkaten') {
-                window.open('assets/documents/user_manual_henkaten.pdf', '_blank');
-            } 
-
-        }
-        </script>
-        <script>
-            function logCekAbsensi() {
-                fetch('cek_absensi.php')
-                    .then(res => res.text())
-                    .then(text => {
-                        console.log('--- Log Cek Absensi ---\n' + text);
-                    })
-                    .catch(err => {
-                        console.error('[❌] Gagal fetch cek_absensi.php:', err);
-                    });
-            }
-
-            logCekAbsensi(); // saat load pertama
-            setInterval(logCekAbsensi, 300000); // ulang tiap 5 menit
-            </script>
-            <script>
-                const scrollContainer = document.querySelector('.scroll-container');
-                let scrollDirection = 1;
-
-                function autoScroll() {
-                    if (!scrollContainer) return;
-                    
-                    scrollContainer.scrollTop += scrollDirection;
-
-                    // Jika sampai bawah, ubah arah scroll ke atas
-                    if (scrollContainer.scrollTop + scrollContainer.clientHeight >= scrollContainer.scrollHeight) {
-                        scrollDirection = -1;
-                    }
-                    // Jika sampai atas, ubah arah scroll ke bawah
-                    if (scrollContainer.scrollTop <= 0) {
-                        scrollDirection = 1;
-                    }
-                }
-
-                setInterval(autoScroll, 50); // 50ms per scroll step (bisa kamu sesuaikan)
-            </script>
-
     </body>
 </html>
 <?php

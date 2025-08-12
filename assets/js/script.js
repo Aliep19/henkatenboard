@@ -188,3 +188,57 @@ function handleSkillMap() {
                 }, 600000); // 600000ms = 10 menit
 
             });
+
+        // Function to handle manual book opening
+        function openManualBook(type) {
+            if (type === 'henkaten') {
+                window.open('assets/documents/user_manual_henkaten.pdf', '_blank');
+            } 
+
+        }
+
+            function logCekAbsensi() {
+                fetch('cek_absensi.php')
+                    .then(res => res.text())
+                    .then(text => {
+                        console.log('--- Log Cek Absensi ---\n' + text);
+                    })
+                    .catch(err => {
+                        console.error('[❌] Gagal fetch cek_absensi.php:', err);
+                    });
+            }
+
+            logCekAbsensi(); // saat load pertama
+            setInterval(logCekAbsensi, 300000); // ulang tiap 5 menit
+
+                // Fungsi auto-scroll untuk semua container dengan kelas .scroll-container
+                const scrollContainers = document.querySelectorAll('.scroll-container');
+                const scrollDirections = new Map(); // Menyimpan arah scroll untuk setiap container
+
+                function autoScroll() {
+                    scrollContainers.forEach(container => {
+                        if (!container) return;
+
+                        // Inisialisasi arah scroll jika belum ada
+                        if (!scrollDirections.has(container)) {
+                            scrollDirections.set(container, 1); // 1 untuk ke bawah, -1 untuk ke atas
+                        }
+
+                        // Dapatkan arah scroll saat ini
+                        let direction = scrollDirections.get(container);
+                        container.scrollTop += direction;
+
+                        // Jika sampai bawah, ubah arah ke atas
+                        if (container.scrollTop + container.clientHeight >= container.scrollHeight) {
+                            scrollDirections.set(container, -1);
+                        }
+                        // Jika sampai atas, ubah arah ke bawah
+                        if (container.scrollTop <= 0) {
+                            scrollDirections.set(container, 1);
+                        }
+                    });
+                }
+
+                // Jalankan auto-scroll setiap 50ms
+                setInterval(autoScroll, 50);
+           

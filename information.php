@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 include 'src/workhours.php';
 require_once 'konfigurasi/konfig.php';
 include 'src/inform.php';
@@ -146,4 +147,3 @@ setInterval(logCekAbsensi, 300000); // ulang tiap 5 menit
 </script>
 </body>
 </html>
-<?php mysqli_close($conn); ?>
