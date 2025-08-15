@@ -341,12 +341,12 @@ $('.btn.btn-success').click(function () {
 
     const diffMinutes = (now - shiftStart) / 60000;
 
-    if (diffMinutes > 120) {
+    if (diffMinutes > 240) {
         Swal.fire({
             icon: 'warning',
             iconColor: 'red',
             title: 'Absensi Ditutup!',
-            text: 'Absensi maksimal dilakukan dalam 2 jam setelah shift dimulai.',
+            text: 'Absensi maksimal dilakukan dalam 4 jam setelah shift dimulai.',
         });
         return;
     }
@@ -389,7 +389,6 @@ function updateMPData(id_hkt) {
         const today = new Date();
         const tanggalDatabase = today.toISOString().split('T')[0];
 
-
         if (!npkAwal || !statusValue || !idProses || !idShift) {
             console.warn('Data incomplete for row:', row);
             Swal.fire('Peringatan!', 'Data tidak lengkap pada beberapa baris tabel. Periksa kembali isian.', 'warning');
@@ -424,14 +423,46 @@ function updateMPData(id_hkt) {
         success: function(response) {
             console.log('Response from server:', response);
             if (Array.isArray(response) && response.some(item => item.success)) {
-                const redirectUrl = "home.php?status=success&id_hkt=" + encodeURIComponent(id_hkt);
-                window.location.href = redirectUrl;
+                // Tampilkan notifikasi sukses dengan jeda 2 detik sebelum redirect
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Sukses!',
+                    text: 'Absensi berhasil dilakukan dan data telah masuk ke database.',
+                    timer: 2000, // Jeda 2 detik
+                    showConfirmButton: false
+                }).then(() => {
+                    const redirectUrl = "home.php?status=success&id_hkt=" + encodeURIComponent(id_hkt);
+                    window.location.href = redirectUrl;
+                });
             } else {
-                Swal.fire('Gagal!', 'Beberapa data gagal diperbarui.', 'error');
+                // Tampilkan notifikasi gagal
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Gagal!',
+                    text: 'Maaf, data absensi yang diinput gagal masuk ke database.',
+                    timer: 2000, // Jeda 2 detik untuk notifikasi gagal
+                    showConfirmButton: false
+                });
+                // Tampilkan pesan error spesifik dari server jika ada
+                let errorMessage = 'Beberapa data gagal diperbarui.';
+                response.forEach(item => {
+                    if (item.error) {
+                        errorMessage = item.error;
+                    }
+                });
+                Swal.fire('Gagal!', errorMessage, 'error');
             }
         },
         error: function(xhr, status, error) {
             console.error('Error updating data:', error);
+            // Tampilkan notifikasi gagal untuk kesalahan jaringan
+            Swal.fire({
+                icon: 'error',
+                title: 'Gagal!',
+                text: 'Maaf, data absensi yang diinput gagal masuk ke database.',
+                timer: 2000, // Jeda 2 detik
+                showConfirmButton: false
+            });
             Swal.fire('Gagal!', 'Terjadi kesalahan saat mengirim data.', 'error');
         }
     });
