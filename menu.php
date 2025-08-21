@@ -9,7 +9,7 @@ require_once 'konfigurasi/konfig.php';
 include 'src/workhours.php';
 
 // Access control logic
-$isProduction = (isset($_SESSION['dept']) && stripos($_SESSION['dept'], 'Production') === 0);
+$isProduction = (isset($_SESSION['dept']) && stripos($_SESSION['dept'], 'PROD') === 0);
 $isQA = (isset($_SESSION['dept']) && strcasecmp($_SESSION['dept'], 'QA') === 0);
 $isGolongan34 = (isset($_SESSION['golongan']) && in_array($_SESSION['golongan'], [3, 4]));
 
@@ -44,7 +44,7 @@ mysqli_close($conn3);
     <title>Henkaten Board - PT Kayaba Indonesia</title>
     <link rel="stylesheet" href="assets/css/menu.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="assets/css/home.css?v=<?php echo time(); ?>">
-    <link rel="shortcut icon" href="assets/img/icon.jpg" type="image/x-icon">
+    <link rel="shortcut icon" href="assets/img/kyb_logo.png" type="image/x-icon">
     <link rel="stylesheet" href="assets/bootstrap-5.3.3-dist/css/bootstrap.min.css">
     <link href="assets/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
     <link href="assets/jquery-ui/jquery-ui.min.css" rel="stylesheet">
@@ -68,7 +68,7 @@ mysqli_close($conn3);
             <div class="row justify-content-center">
                 <!-- Dashboard Henkaten Card -->
                 <div class="col-md-6 col-lg-3 d-flex justify-content-center">
-                    <div class="menu-card" onclick="windowJob.location.href='home.php'">
+                    <div class="menu-card" onclick="window.location.href='home.php'">
                         <div class="card-hover-effect"></div>
                         <div class="d-flex justify-content-center">
                             <img src="assets/img/dashboard.png" class="card-img-top" style="height: 20vh; width: 20vh" alt="Dashboard Henkaten">
@@ -162,9 +162,10 @@ mysqli_close($conn3);
     <?php endif; ?>
 
     <!-- Copyright Footer -->
-    <footer class="mt-2 py-2 text-center text-white" style="background-color: rgb(18, 18, 77);">
-        <p><b>© 2025 PT Kayaba Indonesia. All Rights Reserved.</p></b>
-    </footer>
+<footer class="py-2 text-center text-white bg-primary-dark fixed-bottom">
+    <p class="mb-0"><b>© 2025 PT Kayaba Indonesia. All Rights Reserved.</b></p>
+</footer>
+
 
     <?php include 'proses/modal/modal_alert.php'; ?>
 

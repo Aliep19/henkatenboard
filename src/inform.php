@@ -30,8 +30,14 @@ $query_henkaten = "
     LIMIT 15";
 
 $news_images = [];
-$base_path_news = 'C:/laragon/www/henkatenboard/assets/img/uploads/news/';
-$base_path_henkaten = 'C:/laragon/www/henkatenboard/uploads/';
+// posisi file sekarang = C:/laragon/www/kyb-henkaten_board/src/inform.php
+// dirname(__DIR__) = naik 1 folder dari /src → C:/laragon/www/kyb-henkaten_board
+
+$base_dir = dirname(__DIR__); // otomatis ambil root project, tidak peduli namanya apa
+
+$base_path_news = $base_dir . '/assets/img/uploads/news/';
+$base_path_henkaten = $base_dir . '/uploads/';
+
 
 // Execute news images query
 $result_news = mysqli_query($conn, $query_news);

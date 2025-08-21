@@ -211,34 +211,146 @@ function handleSkillMap() {
             logCekAbsensi(); // saat load pertama
             setInterval(logCekAbsensi, 300000); // ulang tiap 5 menit
 
-                // Fungsi auto-scroll untuk semua container dengan kelas .scroll-container
-                const scrollContainers = document.querySelectorAll('.scroll-container');
-                const scrollDirections = new Map(); // Menyimpan arah scroll untuk setiap container
+// Fungsi auto-scroll untuk semua container dengan kelas .scroll-container
+const scrollContainers = document.querySelectorAll('.scroll-container');
+const scrollDirections = new Map(); // Menyimpan arah scroll untuk setiap container
 
-                function autoScroll() {
-                    scrollContainers.forEach(container => {
-                        if (!container) return;
+function autoScroll() {
+    scrollContainers.forEach(container => {
+        if (!container) return;
 
-                        // Inisialisasi arah scroll jika belum ada
-                        if (!scrollDirections.has(container)) {
-                            scrollDirections.set(container, 1); // 1 untuk ke bawah, -1 untuk ke atas
-                        }
+        // Inisialisasi arah scroll jika belum ada
+        if (!scrollDirections.has(container)) {
+            scrollDirections.set(container, 1); // 1 = ke bawah, -1 = ke atas
+        }
 
-                        // Dapatkan arah scroll saat ini
-                        let direction = scrollDirections.get(container);
-                        container.scrollTop += direction;
+        // Ambil arah scroll
+        let direction = scrollDirections.get(container);
+        container.scrollTop += direction;
 
-                        // Jika sampai bawah, ubah arah ke atas
-                        if (container.scrollTop + container.clientHeight >= container.scrollHeight) {
-                            scrollDirections.set(container, -1);
-                        }
-                        // Jika sampai atas, ubah arah ke bawah
-                        if (container.scrollTop <= 0) {
-                            scrollDirections.set(container, 1);
-                        }
+        // Tolerance biar gak nyangkut
+        const tolerance = 2;
+
+        // Jika sampai bawah (scrollTop + clientHeight >= scrollHeight)
+        if (container.scrollTop + container.clientHeight >= container.scrollHeight - tolerance) {
+            scrollDirections.set(container, -1);
+        }
+        // Jika sampai atas
+        else if (container.scrollTop <= tolerance) {
+            scrollDirections.set(container, 1);
+        }
+    });
+}
+
+// Jalankan auto-scroll tiap 20ms (lebih smooth)
+setInterval(autoScroll, 50);
+
+                $(document).ready(function() {
+    // Handle form submission for checked status
+    $('.check-form').on('submit', function(e) {
+        e.preventDefault();
+        
+        var form = $(this);
+        var id_perubahan = form.data('perubahan-id');
+        var checked = form.find('input[name="checked_' + id_perubahan + '"]:checked').val();
+
+        if (checked === undefined) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Warning',
+                text: 'Please select Approved or Not Approved'
+            });
+            return;
+        }
+
+        $.ajax({
+            url: 'proses/submit_check.php',
+            type: 'POST',
+            data: {
+                id_perubahan: id_perubahan,
+                checked: checked
+            },
+            dataType: 'json',
+            success: function(response) {
+                if (response.status === 'success') {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Success',
+                        text: response.message,
+                        timer: 1500,
+                        showConfirmButton: false
+                    }).then(function() {
+                        location.reload(); // Reload to update the table
+                    });
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: response.message
                     });
                 }
+            },
+            error: function() {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'An error occurred while submitting'
+                });
+            }
+        });
+    });
+});
+document.addEventListener("DOMContentLoaded", function() {
+    document.querySelectorAll(".btn-check-trigger").forEach(btn => {
+        btn.addEventListener("click", function() {
+            let container = btn.closest(".approval-container");
+            let id = container.getAttribute("data-id");
 
-                // Jalankan auto-scroll setiap 50ms
-                setInterval(autoScroll, 50);
+            Swal.fire({
+                title: 'Pilih Status',
+                input: 'radio',
+                inputOptions: {
+                    1: 'Approved',
+                    0: 'Not Approved'
+                },
+                inputValidator: (value) => {
+                    if (!value) {
+                        return 'Silakan pilih salah satu opsi!';
+                    }
+                },
+                confirmButtonText: 'Submit',
+                showCancelButton: true,
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    let checked = result.value;
+
+                    fetch("proses/submit_Check.php", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                        body: "id_perubahan=" + encodeURIComponent(id) + "&checked=" + encodeURIComponent(checked)
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.status === "success") {
+                            Swal.fire("Berhasil!", data.message, "success").then(() => {
+                                // ubah tampilan jadi hasil + warna
+                                if (checked === "1") {
+                                    container.innerHTML = `<span class="text-success fw-bold">Approved</span>`;
+                                } else {
+                                    container.innerHTML = `<span class="text-danger fw-bold">Not Approved</span>`;
+                                }
+                            });
+                        } else {
+                            Swal.fire("Gagal!", data.message, "error");
+                        }
+                    })
+                    .catch(err => {
+                        Swal.fire("Error!", err, "error");
+                    });
+                }
+            });
+        });
+    });
+});
            

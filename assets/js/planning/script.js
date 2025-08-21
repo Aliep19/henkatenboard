@@ -347,31 +347,35 @@ $(document).ready(function() {
     });
 
     // SECTION: Fungsi Riwayat DHK
-    // Menampilkan riwayat DHK berdasarkan ID line
     function displayHistoryDhk() {
-        let id_line = $('#lineSelect').val();
-        if (!id_line) {
-            Swal.fire({
-                title: 'Peringatan!',
-                text: 'Silahkan pilih Line terlebih dahulu.',
-                icon: 'warning',
-                confirmButtonText: 'OK'
-            });
-            return;
-        }
-
+    let id_line = $('#lineSelect').val();
+    if (!id_line) {
         Swal.fire({
-            title: 'Memuat...',
-            text: 'Sedang mengambil data history DHK',
-            allowOutsideClick: false,
-            allowEscapeKey: false,
-            didOpen: () => Swal.showLoading()
+            title: 'Peringatan!',
+            text: 'Silahkan pilih Line terlebih dahulu.',
+            icon: 'warning',
+            confirmButtonText: 'OK'
         });
+        return;
+    }
 
+    // Reset date filters on modal open
+    $('#startDateFilter').val('');
+    $('#endDateFilter').val('');
+
+    Swal.fire({
+        title: 'Memuat...',
+        text: 'Sedang mengambil data history DHK',
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        didOpen: () => Swal.showLoading()
+    });
+
+    function loadHistory(start_date = null, end_date = null) {
         $.ajax({
             url: 'proses/get_history.php',
             type: 'POST',
-            data: { id_line },
+            data: { id_line, start_date, end_date },
             dataType: 'json',
             success: function(response) {
                 Swal.close();
@@ -488,7 +492,7 @@ $(document).ready(function() {
                         });
                     });
                 } else {
-                    $('#historyDhkContent').html('<p class="text-center">Tidak ada data history untuk line ini.</p>');
+                    $('#historyDhkContent').html('<p class="text-center">Tidak ada data history untuk rentang tanggal ini.</p>');
                 }
             },
             error: function(xhr, status, error) {
@@ -504,6 +508,45 @@ $(document).ready(function() {
             }
         });
     }
+
+    // Load last week's data by default
+    loadHistory();
+
+    // Handle apply date filter
+    $('#applyDateFilter').on('click', function() {
+        let start_date = $('#startDateFilter').val();
+        let end_date = $('#endDateFilter').val();
+
+        if (!start_date || !end_date) {
+            Swal.fire({
+                title: 'Peringatan!',
+                text: 'Silahkan pilih tanggal mulai dan tanggal berakhir.',
+                icon: 'warning',
+                confirmButtonText: 'OK'
+            });
+            return;
+        }
+
+        if (start_date > end_date) {
+            Swal.fire({
+                title: 'Peringatan!',
+                text: 'Tanggal mulai tidak boleh lebih besar dari tanggal berakhir.',
+                icon: 'warning',
+                confirmButtonText: 'OK'
+            });
+            return;
+        }
+
+        loadHistory(start_date, end_date);
+    });
+
+    // Handle reset date filter
+    $('#resetDateFilter').on('click', function() {
+        $('#startDateFilter').val('');
+        $('#endDateFilter').val('');
+        loadHistory();
+    });
+}
 
 // SECTION: Pengiriman Formulir
 // Menangani pengiriman formulir HKT

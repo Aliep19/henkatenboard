@@ -7,8 +7,14 @@ $response = ['status' => 'error', 'message' => 'Gagal mengambil data', 'data' =>
 
 if (isset($_POST['id_line'])) {
     $id_line = mysqli_real_escape_string($conn, $_POST['id_line']);
+    $start_date = isset($_POST['start_date']) ? mysqli_real_escape_string($conn, $_POST['start_date']) : null;
+    $end_date = isset($_POST['end_date']) ? mysqli_real_escape_string($conn, $_POST['end_date']) : null;
 
-    // Ambil minggu lalu (Minggu sebelumnya dari hari Senin sampai Minggu)
+    // Default to last week (Monday to Sunday) if no date filter is provided
+    $date_condition = ($start_date && $end_date) ? 
+        "AND h.date BETWEEN '$start_date' AND '$end_date'" : 
+        "AND YEARWEEK(h.date, 1) = YEARWEEK(DATE_SUB(CURDATE(), INTERVAL 1 WEEK), 1)";
+
     $query = "
         SELECT 
             h.date,
@@ -22,11 +28,10 @@ if (isset($_POST['id_line'])) {
         LEFT JOIN skillmap_db.process p ON mp.id_proses = p.id
         LEFT JOIN skillmap_db.karyawan k ON mp.man_power = k.npk
         WHERE h.id_line = '$id_line'
-            AND YEARWEEK(h.date, 1)
+            $date_condition
         ORDER BY h.date DESC, p.name ASC
     ";
 
-            // AND YEARWEEK(h.date, 1) = YEARWEEK(CURDATE(), 1)
     $result = mysqli_query($conn, $query);
 
     if ($result) {
